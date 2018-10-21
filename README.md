@@ -33,6 +33,12 @@ docker run --rm -e LEDGER_FILE=/journals/your.journal -v "/path/to/local/journal
 
 Outputs the balance of your journal.
 
+To simplify usage an alias can be used:
+
+```
+alias hledger='docker run --rm -e LEDGER_FILE=/journals/your.journal -v "/path/to/local/journal/folder:/journals" hledger-docker hledger'
+```
+
 Using interactive mode `-it` it is possible to use the interactive entry tool.
 
 ```
