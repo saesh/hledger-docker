@@ -1,17 +1,17 @@
 FROM haskell:8
 
-# download and build hledger
-RUN git clone http://github.com/simonmichael/hledger hledger && cd hledger && stack install
+RUN stack install --resolver=lts-12 \
+    cassava-megaparsec-1.0.0 \
+    hledger-lib-1.11 \
+    hledger-1.11 \
+    hledger-ui-1.11 \
+    hledger-web-1.11 \
+    hledger-api-1.11
 
-# compile add on commands
-RUN /hledger/bin/compile.sh
-
-# create target folder for journal volume
 RUN mkdir /journals
 
 VOLUME [ "/journals" ]
 
 EXPOSE 5000
 
-# run hledger web by default
 CMD [ "hledger-web", "--serve", "--host", "0.0.0.0" ]
